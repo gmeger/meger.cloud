@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>meger.cloud</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        font-family: "Inter", "Segoe UI", Roboto, sans-serif;
+        background-color: #0b1120;
+        color: #f8fafc;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        line-height: 1.6;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      header {
+        background: radial-gradient(circle at top left, #38bdf8, #0f172a 60%);
+        padding: 4rem 1.5rem 3rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .topbar {
+        position: absolute;
+        top: 1.5rem;
+        right: 1.5rem;
+        z-index: 2;
+      }
+
+      .language-toggle {
+        border: 1px solid rgba(148, 163, 184, 0.3);
+        background: rgba(15, 23, 42, 0.65);
+        color: #f8fafc;
+        padding: 0.5rem 1rem;
+        border-radius: 999px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        box-shadow: 0 0.75rem 1.5rem rgba(15, 23, 42, 0.35);
+      }
+
+      .language-toggle:hover,
+      .language-toggle:focus-visible {
+        transform: translateY(-1px);
+        box-shadow: 0 1rem 2rem rgba(15, 23, 42, 0.45);
+        outline: none;
+      }
+
+      header::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at 20% 20%, rgba(56, 189, 248, 0.3), transparent 55%),
+          radial-gradient(circle at 80% 10%, rgba(147, 51, 234, 0.4), transparent 50%);
+        mix-blend-mode: screen;
+        pointer-events: none;
+      }
+
+      .hero {
+        position: relative;
+        max-width: 960px;
+        margin: 0 auto;
+        display: grid;
+        gap: 2.5rem;
+        align-items: center;
+      }
+
+      .hero img {
+        width: 200px;
+        max-width: 100%;
+        filter: drop-shadow(0 1.25rem 1.5rem rgba(15, 23, 42, 0.6));
+      }
+
+      .hero-text h1 {
+        font-size: clamp(2.4rem, 4vw + 1rem, 3.8rem);
+        margin: 0 0 1rem;
+        letter-spacing: -0.03em;
+      }
+
+      .hero-text p {
+        margin: 0;
+        font-size: clamp(1rem, 1vw + 0.8rem, 1.3rem);
+        max-width: 540px;
+      }
+
+      main {
+        flex: 1;
+        padding: 3rem 1.5rem 4rem;
+        background: linear-gradient(180deg, #0f172a 0%, #020617 100%);
+      }
+
+      .content {
+        max-width: 960px;
+        margin: 0 auto;
+        display: grid;
+        gap: 3rem;
+      }
+
+      section h2 {
+        font-size: 1.9rem;
+        margin-bottom: 1rem;
+        color: #38bdf8;
+      }
+
+      section p,
+      section ul {
+        margin: 0;
+        font-size: 1.05rem;
+        color: rgba(226, 232, 240, 0.9);
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        display: grid;
+        gap: 0.75rem;
+      }
+
+      li::before {
+        content: "⟡";
+        margin-right: 0.75rem;
+        color: #38bdf8;
+      }
+
+      address {
+        font-style: normal;
+        white-space: pre-line;
+        background: rgba(15, 23, 42, 0.7);
+        border: 1px solid rgba(148, 163, 184, 0.2);
+        border-radius: 0.75rem;
+        padding: 1.5rem;
+        line-height: 1.7;
+        box-shadow: 0 1.25rem 2.5rem rgba(2, 6, 23, 0.45);
+      }
+
+      footer {
+        padding: 2.5rem 1.5rem;
+        text-align: center;
+        font-size: 0.9rem;
+        color: rgba(148, 163, 184, 0.9);
+        background: #020617;
+        border-top: 1px solid rgba(30, 41, 59, 0.8);
+      }
+
+      a {
+        color: #38bdf8;
+        text-decoration: none;
+      }
+
+      a:hover,
+      a:focus-visible {
+        text-decoration: underline;
+      }
+
+      @media (max-width: 720px) {
+        .hero {
+          text-align: center;
+        }
+
+        .hero img {
+          justify-self: center;
+        }
+
+        li::before {
+          display: none;
+        }
+
+        ul {
+          gap: 0.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="topbar">
+        <button id="language-toggle" class="language-toggle" type="button">
+          Polski
+        </button>
+      </div>
+      <div class="hero">
+        <img
+          src="meger.cloud.svg"
+          alt="meger.cloud logo"
+          data-i18n="logoAlt"
+          data-i18n-attr="alt"
+        />
+        <div class="hero-text">
+          <h1 data-i18n="heroTitle">
+            Cloud and software architecture tailored to your business
+          </h1>
+          <p data-i18n="heroIntro">
+            meger.cloud delivers hands-on cloud and software architecture
+            expertise from nearly twenty years in IT. I build solutions that are
+            reliable, secure, and scalable.
+          </p>
+        </div>
+      </div>
+    </header>
+    <main>
+      <div class="content">
+        <section id="about">
+          <h2 data-i18n="aboutHeading">About me</h2>
+          <p data-i18n="aboutBody">
+            My name is Grzegorz Meger. I combine deep technical knowledge with
+            business pragmatism to create architectures that support company
+            goals. For almost two decades I have helped teams design, implement,
+            and operate highly available systems across public and hybrid
+            clouds.
+          </p>
+        </section>
+        <section id="services">
+          <h2 data-i18n="servicesHeading">Services</h2>
+          <ul>
+            <li data-i18n="service1">
+              Designing and auditing public and hybrid cloud architectures
+            </li>
+            <li data-i18n="service2">
+              Migrating applications and data to cloud environments
+            </li>
+            <li data-i18n="service3">
+              Building and optimising CI/CD processes and platform engineering
+            </li>
+            <li data-i18n="service4">
+              Advising on technology choices, cost modelling, and scaling
+              solutions
+            </li>
+          </ul>
+        </section>
+        <section id="company">
+          <h2 data-i18n="companyHeading">Company details</h2>
+          <address>
+Starowiejska 16/2
+81-356 Gdynia
+NIP PL 5811890763
+REGON 526595339
+          </address>
+        </section>
+        <section id="contact">
+          <h2 data-i18n="contactHeading">Contact</h2>
+          <p data-i18n="contactBody">
+            Let's talk about your project:
+            <a href="mailto:hello@meger.cloud">hello@meger.cloud</a>
+          </p>
+        </section>
+      </div>
+    </main>
+    <footer>
+      © <span id="year"></span>
+      <span data-i18n="footerText">meger.cloud — cloud and software solutions crafted with passion.</span>
+    </footer>
+    <script>
+      const translations = {
+        en: {
+          logoAlt: "meger.cloud logo",
+          heroTitle: "Cloud and software architecture tailored to your business",
+          heroIntro:
+            "meger.cloud delivers hands-on cloud and software architecture expertise from nearly twenty years in IT. I build solutions that are reliable, secure, and scalable.",
+          aboutHeading: "About me",
+          aboutBody:
+            "My name is Grzegorz Meger. I combine deep technical knowledge with business pragmatism to create architectures that support company goals. For almost two decades I have helped teams design, implement, and operate highly available systems across public and hybrid clouds.",
+          servicesHeading: "Services",
+          service1: "Designing and auditing public and hybrid cloud architectures",
+          service2: "Migrating applications and data to cloud environments",
+          service3: "Building and optimising CI/CD processes and platform engineering",
+          service4: "Advising on technology choices, cost modelling, and scaling solutions",
+          companyHeading: "Company details",
+          contactHeading: "Contact",
+          contactBody:
+            "Let's talk about your project: <a href=\"mailto:hello@meger.cloud\">hello@meger.cloud</a>",
+          footerText: "meger.cloud — cloud and software solutions crafted with passion.",
+        },
+        pl: {
+          logoAlt: "Logo meger.cloud",
+          heroTitle: "Architektura chmury i oprogramowania skrojona na miarę",
+          heroIntro:
+            "meger.cloud to indywidualne wsparcie architekta chmurowego i softwareowego z niemal dwudziestoletnim doświadczeniem w IT. Buduję rozwiązania, które są niezawodne, bezpieczne i skalowalne.",
+          aboutHeading: "O mnie",
+          aboutBody:
+            "Nazywam się Grzegorz Meger. Łączę głęboką wiedzę techniczną z praktyką biznesową, aby tworzyć architektury, które wspierają cele firm. Od prawie 20 lat pomagam zespołom projektować, wdrażać i utrzymywać systemy o wysokiej dostępności, zarówno w chmurze publicznej, jak i hybrydowej.",
+          servicesHeading: "Zakres usług",
+          service1: "Projektowanie i audyty architektury chmury publicznej i hybrydowej",
+          service2: "Migracje aplikacji oraz danych do środowisk chmurowych",
+          service3: "Budowa i optymalizacja procesów CI/CD i inżynierii platform",
+          service4: "Wsparcie w doborze technologii, kosztorysowaniu i skalowaniu rozwiązań",
+          companyHeading: "Dane firmy",
+          contactHeading: "Kontakt",
+          contactBody:
+            "Zapraszam do rozmowy o Twoim projekcie: <a href=\"mailto:hello@meger.cloud\">hello@meger.cloud</a>",
+          footerText: "meger.cloud — rozwiązania chmurowe i softwareowe tworzone z pasją.",
+        },
+      };
+
+      const yearEl = document.getElementById("year");
+      yearEl.textContent = new Date().getFullYear();
+
+      const languageToggle = document.getElementById("language-toggle");
+      const toggleText = { en: "Polski", pl: "English" };
+      const toggleLabel = {
+        en: "Przełącz na język polski",
+        pl: "Switch to English",
+      };
+
+      const elements = document.querySelectorAll("[data-i18n]");
+
+      function applyLocale(locale) {
+        const safeLocale = translations[locale] ? locale : "en";
+        document.documentElement.setAttribute("lang", safeLocale);
+
+        elements.forEach((el) => {
+          const key = el.dataset.i18n;
+          const translation = translations[safeLocale][key];
+          if (!translation) return;
+
+          if (el.dataset.i18nAttr) {
+            el.setAttribute(el.dataset.i18nAttr, translation);
+          } else {
+            el.innerHTML = translation;
+          }
+        });
+
+        languageToggle.textContent = toggleText[safeLocale];
+        languageToggle.setAttribute("aria-label", toggleLabel[safeLocale]);
+        localStorage.setItem("preferredLanguage", safeLocale);
+      }
+
+      function detectPreferredLocale() {
+        const stored = localStorage.getItem("preferredLanguage");
+        if (stored && translations[stored]) {
+          return stored;
+        }
+
+        const browserLocale = navigator.language || navigator.userLanguage;
+        if (browserLocale && browserLocale.toLowerCase().startsWith("pl")) {
+          return "pl";
+        }
+
+        return "en";
+      }
+
+      let currentLocale = detectPreferredLocale();
+      applyLocale(currentLocale);
+
+      languageToggle.addEventListener("click", () => {
+        currentLocale = currentLocale === "en" ? "pl" : "en";
+        applyLocale(currentLocale);
+      });
+    </script>
+  </body>
+</html>
